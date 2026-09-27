@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الخبز والملح · تأمل في الوفاء والخيبة</title>
+  <meta name="description" content="تأمل أدبي غامر في الوفاء والخيبة، عن الرغيف المكسور وبلورات الملح على خشب المائدة حين تلتبس حاجة الجوع بعهد الصداقة، بصوت خلدون عكرمة.">
+  <meta name="author" content="𝓚𝓱𝓪𝓵𝓭𝓸𝓾𝓷𝓐𝓴𝓻𝓪𝓶𝓪𝓱">
+
+  <!-- بطاقة المشاركة الاجتماعية (Open Graph) -->
+  <meta property="og:title" content="الخبز والملح · تأمل في الوفاء والخيبة">
+  <meta property="og:description" content="تأمل أدبي غامر في الوفاء والخيبة، عن الرغيف المكسور وبلورات الملح على خشب المائدة حين تلتبس حاجة الجوع بعهد الصداقة، بصوت خلدون عكرمة.">
+  <meta property="og:image" content="https://kakramah.github.io/bread-and-salt/images/share.jpg">
+  <meta property="og:url" content="https://kakramah.github.io/bread-and-salt/">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- شريط تقدم القراءة -->
+  <div id="reading-progress" class="reading-progress" aria-hidden="true">
+    <div id="reading-progress-bar" class="reading-progress-bar"></div>
+  </div>
+
+  <!-- شريط التنقل العلوي -->
+  <header class="site-nav">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <img src="images/eagle-emblem-metal.svg" alt="العقاب السوري" class="nav-eagle" width="44" height="33">
+        <span class="nav-title">الخبز والملح</span>
+      </div>
+      <div class="nav-actions">
+        <button id="ambient-toggle" class="nav-btn" type="button" aria-label="تشغيل صوت سكون المائدة" aria-pressed="false" title="سكون المائدة">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <path id="audio-wave" d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke-dasharray="8" stroke-dashoffset="8"></path>
+          </svg>
+        </button>
+        <button id="share-toggle" class="nav-btn" type="button" aria-label="مشاركة النص" title="مشاركة">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- الافتتاحية -->
+    <section class="hero" id="top">
+      <div class="hero-background">
+        <img src="images/hero.jpg" alt="مائدة خشبية عتيقة يعلوها رغيف قمح وملح ومصباح زيت في غرفة حجرية هادئة" width="1200" height="675" fetchpriority="high">
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <span class="hero-tag">تأمل وجداني</span>
+        <h1 class="hero-title">الخبز والملح</h1>
+        <p class="hero-quote">«ليس كلُّ من أكل معك الخبزَ والملحَ صديقَك؛ ربما كان جائعاً فقط.»</p>
+        <p class="hero-subtext">تأمل في مادية القوت وخيبة الوفاء، حين يظن صاحب الدار أن مقاسمة الرغيف عهد لا ينقض، بينما كان الجليس يطلب سد رمقه ثم يمضي.</p>
+        <a href="#table-tracker" class="scroll-cue" aria-label="الانتقال إلى بداية النص">
+          <span>اقرأ الحكاية</span>
+          <svg class="scroll-cue-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- لحظة التوقيع التفاعلية: شريط تحول المائدة -->
+    <section id="table-tracker" class="signature-tracker-wrap" aria-label="مسار تحول المائدة">
+      <div class="signature-tracker">
+        <div class="tracker-label">
+          <span class="tracker-dot" aria-hidden="true"></span>
+          <span>حالة المائدة:</span>
+          <span id="tracker-state-text" class="tracker-state-text">كسرة أولى</span>
+        </div>
+        <div class="tracker-steps" role="navigation" aria-label="مشاهد المائدة">
+          <button type="button" class="step-node active" data-scene="1" aria-label="المشهد الأول: كسرة أولى" title="كسرة أولى">١</button>
+          <button type="button" class="step-node" data-scene="2" aria-label="المشهد الثاني: بلورات على الخشب" title="بلورات على الخشب">٢</button>
+          <button type="button" class="step-node" data-scene="3" aria-label="المشهد الثالث: لهفة الأصابع" title="لهفة الأصابع">٣</button>
+          <button type="button" class="step-node" data-scene="4" aria-label="المشهد الرابع: حرارة عابرة" title="حرارة عابرة">٤</button>
+          <button type="button" class="step-node" data-scene="5" aria-label="المشهد الخامس: تراجع الكف" title="تراجع الكف">٥</button>
+          <button type="button" class="step-node" data-scene="6" aria-label="المشهد السادس: صرير المقعد" title="صرير المقعد">٦</button>
+          <button type="button" class="step-node" data-scene="7" aria-label="المشهد السابع: وحشة المائدة" title="وحشة المائدة">٧</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- المتن السردي الغامر (7 مشاهد) -->
+    <div class="story-flow" id="story">
+
+      <!-- المشهد 1 -->
+      <article class="scene-block" id="scene-1" data-scene-index="1" data-state-name="كسرة أولى">
+        <div class="scene-card">
+          <div class="scene-media" role="button" tabindex="0" aria-label="تكبير صورة رغيف القمح الساخن على المائدة">
+            <img src="images/slide-01.jpg" alt="رغيف قمح ساخن مقسوم باليدين يتصاعد منه خيط بخار رقيق فوق مائدة خشبية عتيقة" width="1200" height="900" loading="lazy"
+                 data-title="كسرة أولى"
+                 data-desc="تصوّر بصري يجسد لحظة اقتسام رغيف القمح الساخن وخروج البخار في برد الردهة."
+                 data-category="البدء">
+            <span class="media-badge">تصوّر بصري</span>
+          </div>
+          <div class="scene-content">
+            <span class="scene-anchor">الافتتاح · حرارة القوت</span>
+            <h2 class="scene-title">كسرة أولى</h2>
+            <p class="scene-text">على خشب المائدة العتيق، رغيف قمح ساخن قُسم باليدين لا بالسكين. خرج منه خيط بخار رقيق تبدد في هواء الغرفة البارد، وتساقطت ذرات فتات خشنة ملأت شقوق الطاولة. كان في كسر الرغيف صوت ألفة قديمة، يوهم الجالس بأن اقتسام القوت اقتسامٌ للحياة، وأن اليد التي تمتد معك إلى الرغيف ذاته لا يمكن أن تنقبض في وجهك غداً.</p>
+            <div class="scene-material-detail">
+              <svg class="material-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>التفصيل المادي: رغيف قمح مكسور باليدين، بخار رقيق، وفتات في شقوق الخشب.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- المشهد 2 -->
+      <article class="scene-block reverse" id="scene-2" data-scene-index="2" data-state-name="بلورات على الخشب">
+        <div class="scene-card">
+          <div class="scene-media" role="button" tabindex="0" aria-label="تكبير صورة بلورات الملح الخشن على خشب المائدة">
+            <img src="images/slide-02.jpg" alt="بلورات ملح خشن متناثرة في شقوق مائدة خشبية داكنة بجوار كف متعبة مستقرة" width="1200" height="900" loading="lazy"
+                 data-title="بلورات على الخشب"
+                 data-desc="تصوّر بصري لحبات الملح الصلبة التي تشهد على الميثاق في أعراف الدار."
+                 data-category="الميثاق">
+            <span class="media-badge">تصوّر بصري</span>
+          </div>
+          <div class="scene-content">
+            <span class="scene-anchor">الأثر · ذمة الملح</span>
+            <h2 class="scene-title">بلورات على الخشب</h2>
+            <p class="scene-text">بين شقوق الخشب، تناثرت حبات ملح خشن تساقطت من راحة اليد. ملمس الحبيبات يخدش جلد الكف إذا ضغطت عليه، وطعمه يترك في الحلق وخزاً صريحاً لا يزول بجرعة ماء. والملح في أعراف البيوت ذمة لا تنقض، وقيد خفي يربط الأكف؛ غير أن الحبيبات البيضاء على الخشب ظلت جامدة، تشهد على الجمع ولا تملك أن تصنع منه أماناً.</p>
+            <div class="scene-material-detail">
+              <svg class="material-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>التفصيل المادي: بلورات ملح خشن تخدش راحة الكف وترقد في شقوق السطح.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- اقتباس معلق أول -->
+      <aside class="pull-quote-section" aria-label="اقتباس محوري">
+        <blockquote class="pull-quote-text">«كان في كسر الرغيف صوت ألفة قديمة، يوهم الجالس بأن اقتسام القوت اقتسامٌ للحياة.»</blockquote>
+        <cite class="pull-quote-author">من وحي التأمل</cite>
+      </aside>
+
+      <!-- المشهد 3 -->
+      <article class="scene-block" id="scene-3" data-scene-index="3" data-state-name="لهفة الأصابع">
+        <div class="scene-card">
+          <div class="scene-media" role="button" tabindex="0" aria-label="تكبير صورة الأصابع التي تغمس الخبز في الصحن">
+            <img src="images/slide-03.jpg" alt="أصابع مشدودة تغمس كسرة خبز قمح في صحن زيت فخاري داكن في ضوء مصباح دافئ" width="1200" height="900" loading="lazy"
+                 data-title="لهفة الأصابع"
+                 data-desc="تصوّر بصري يوضح حركة الأصابع المتلهفة التي تطلب سد الفاقة قبل الالتفات للصاحب."
+                 data-category="الحاجة">
+            <span class="media-badge">تصوّر بصري</span>
+          </div>
+          <div class="scene-content">
+            <span class="scene-anchor">الطلب · انشغال الجسد</span>
+            <h2 class="scene-title">لهفة الأصابع</h2>
+            <p class="scene-text">امتدت أصابع الجليس إلى الصحن بحركة سريعة متلهفة، تخونها ارتعاشة مستترة تكشف قلة الصبر. لم تكن العين تنظر في عين الصاحب، بل كانت مشدودة إلى عمق الصحن، تتبع موضع الزيت وحجم اللقمة التالية. كانت حركة الأصابع تقول كل شيء لمن أراد أن يرى: هذه يد تبحث عن سد فاقة، ولا تملك فائضاً من الروح تمنحه للجليس.</p>
+            <div class="scene-material-detail">
+              <svg class="material-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>التفصيل المادي: ارتعاشة أصابع جائعة تغمس الخبز وعين مشدودة لقعر الصحن.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- المشهد 4 -->
+      <article class="scene-block reverse" id="scene-4" data-scene-index="4" data-state-name="حرارة عابرة">
+        <div class="scene-card">
+          <div class="scene-media" role="button" tabindex="0" aria-label="تكبير صورة مشاركة القوت في هدوء الغرفة">
+            <img src="images/slide-04.jpg" alt="جلوس هادئ حول مائدة خشبية متواضعة تضم قدح فخار ورغيف خبز في ضوء مصباح دافئ" width="1200" height="900" loading="lazy"
+                 data-title="حرارة عابرة"
+                 data-desc="تصوّر بصري لسكينة الألفة المؤقتة التي تجمع الجالسين ساعة الطعام."
+                 data-category="الألفة">
+            <span class="media-badge">تصوّر بصري</span>
+          </div>
+          <div class="scene-content">
+            <span class="scene-anchor">اللقاء · وهم الدوام</span>
+            <h2 class="scene-title">حرارة عابرة</h2>
+            <p class="scene-text">ارتفعت حرارة المائدة لبرهة قصيرة، وتصاعدت أصوات المضغ ورشفات الماء من قدح الفخار البارد. خيّم على المكان هدوء يشبه الطمأنينة، وامتزجت رائحة الخبز برائحة الآنية العتيقة. وفي تلك الدقائق المعدودة، ظن صاحب البيت أن هذه الألفة حبل ممتد، وأن الجوع المشترك عهد معقود، بينما كان الأمر برمته حاجة عابرة توشك أن تقضي وطرها.</p>
+            <div class="scene-material-detail">
+              <svg class="material-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>التفصيل المادي: قدح ماء فخاري رطب ورائحة الخبز الدافئ في سكون الغرفة.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- اقتباس معلق ثان -->
+      <aside class="pull-quote-section" aria-label="اقتباس محوري">
+        <blockquote class="pull-quote-text">«هذه يد تبحث عن سد فاقة، ولا تملك فائضاً من الروح تمنحه للجليس.»</blockquote>
+        <cite class="pull-quote-author">من صلب المشهد</cite>
+      </aside>
+
+      <!-- المشهد 5 -->
+      <article class="scene-block" id="scene-5" data-scene-index="5" data-state-name="تراجع الكف">
+        <div class="scene-card">
+          <div class="scene-media" role="button" tabindex="0" aria-label="تكبير صورة الصحن الفارغ وتراجع اليد">
+            <img src="images/slide-05.jpg" alt="صحن فخاري فارغ يحمل مسحة زيت خفيفة بجواره يد متراجعة تستقر فوق الركبة" width="1200" height="900" loading="lazy"
+                 data-title="تراجع الكف"
+                 data-desc="تصوّر بصري للحظة الفراغ بعد الشبع وانقطاع التقارب الحميم."
+                 data-category="الشبع">
+            <span class="media-badge">تصوّر بصري</span>
+          </div>
+          <div class="scene-content">
+            <span class="scene-anchor">الانقطاع · سكون بعد شبع</span>
+            <h2 class="scene-title">تراجع الكف</h2>
+            <p class="scene-text">فرغ الصحن إلا من خطوط زيت شاحبة مسحتها أطراف الخبز الأخيرة. وفجأة، سكنت الأصابع، ومسحت اليد فمها بردن الثوب، ثم تراجعت ببطء لتستقر فوق الركبة. لم يعد في حركة الجسد ذلك الاقتراب الحميم؛ صار الظهر مستنداً إلى الخلف، وتبدلت نظرة العين من اللهفة الشاخصة إلى شرود بارد يتفحص الباب.</p>
+            <div class="scene-material-detail">
+              <svg class="material-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>التفصيل المادي: صحن فخار ممسوح بكسرة أخيرة، ويد ترتد لتستقر فوق الثوب.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- المشهد 6 -->
+      <article class="scene-block reverse" id="scene-6" data-scene-index="6" data-state-name="صرير المقعد">
+        <div class="scene-card">
+          <div class="scene-media" role="button" tabindex="0" aria-label="تكبير صورة المقعد الخشبي المائل والباب المفتوح">
+            <img src="images/slide-06.jpg" alt="كرسي خشبي قديم مائل على أرضية حجرية وباب موارب يدخل منه ضوء الغسق الأزرق" width="1200" height="900" loading="lazy"
+                 data-title="صرير المقعد"
+                 data-desc="تصوّر بصري للمقعد الفارغ بعد نهوض الآكل وبداية دخول برد المساء."
+                 data-category="الغياب">
+            <span class="media-badge">تصوّر بصري</span>
+          </div>
+          <div class="scene-content">
+            <span class="scene-anchor">المفارقة · برودة المغادرة</span>
+            <h2 class="scene-title">صرير المقعد</h2>
+            <p class="scene-text">تحرك المقعد الخشبي على البلاط بصرير جاف قطع السكون. قام الآكل دون التفاتة، وخلف وراءه كرسياً مائلاً ووسادة لم تبرد بعد. فُتح الباب، فدخل تيار هواء ثقيل أرجف خيط البخار المتبقي، ثم صُفق الباب بهدوء مريب لم يترك في الردهة سوى صدى الخطى المتباعدة على درجات السلم.</p>
+            <div class="scene-material-detail">
+              <svg class="material-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>التفصيل المادي: صرير خشب على بلاط حجري، مقعد مائل، وتيار هواء بارد.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- المشهد 7 -->
+      <article class="scene-block" id="scene-7" data-scene-index="7" data-state-name="وحشة المائدة">
+        <div class="scene-card">
+          <div class="scene-media" role="button" tabindex="0" aria-label="تكبير صورة المائدة المنفردة بعد انتهاء القِرى">
+            <img src="images/slide-07.jpg" alt="مائدة خشبية عارية في غرفة فارغة هادئة يعلوها بقايا ملح وفتات وقدح فخاري وحيد" width="1200" height="900" loading="lazy"
+                 data-title="وحشة المائدة"
+                 data-desc="تصوّر بصري يجسد وحشة المكان بعد انفضاض الجليس وبقاء الملح شاهداً صامتاً."
+                 data-category="المرارة">
+            <span class="media-badge">تصوّر بصري</span>
+          </div>
+          <div class="scene-content">
+            <span class="scene-anchor">الخاتمة · مرارة الفهم</span>
+            <h2 class="scene-title">وحشة المائدة</h2>
+            <p class="scene-text">بقيت المائدة وحدها في منتصف الغرفة: صحن فارغ، وفتات متناثر، وبقايا ملح لم تجد من يحفظ ذمتها. لم يكن في القلب غضب يثور ولا صراخ، بل مرارة هادئة كطعم الملح حين يستقر في قاع الحلق. لقد أكل الخبز كله ولم يخن العهد قصداً، لكنه كان جائعاً فقط، والجائع يرى في المائدة طعاماً، بينما يرى فيها الكريم ميثاقاً.</p>
+            <div class="scene-material-detail">
+              <svg class="material-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>التفصيل المادي: صحن فارغ، بلورات ملح باردة، ومرارة صامتة كطعم الملح.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- اقتباس معلق ختامي -->
+      <aside class="pull-quote-section" aria-label="اقتباس ختامي">
+        <blockquote class="pull-quote-text">«الجائع يرى في المائدة طعاماً، بينما يرى فيها الكريم ميثاقاً.»</blockquote>
+        <cite class="pull-quote-author">خلاصة التأمل</cite>
+      </aside>
+
+    </div>
+
+    <!-- قسم المصادر والبيان (§4.9.7) -->
+    <section class="sources-section" id="sources" aria-label="المصادر والبيان">
+      <h2 class="sources-heading">المصادر والبيان</h2>
+      <ul class="sources-list">
+        <li class="source-item">
+          <span class="source-title">مفهوم حرمة الخبز والملح في لسان العرب:</span>
+          ذكر ابن منظور في معجم «لسان العرب» (مادة: م ل ح): «المِلْحُ: الحِلْفُ والعِقْدُ والذِّمام، يُقال: بَيْني وبَيْنه مِلْحٌ ورِباط، أي حِلف وذِمار لا يُخفر، واقتسام القوت كان عند العرب ميثاق أمان يحرّم الغدر.»
+        </li>
+        <li class="source-item">
+          <span class="source-title">أصل الحكمة المتداولة:</span>
+          مقولة «ليس كلُّ من أكل معك الخبز والملح صديقك، ربما كان جائعاً فقط» حكمة وجدانية وأدبية متوارثة في الوعي العربي حول خيبة الوفاء، ولم يثبت لقائلها سند تاريخي حصري منسوب في أمهات كتب التراجم.
+        </li>
+        <li class="source-item">
+          <span class="source-title">نص التأمل الأدبي:</span>
+          كتبه خلدون عكرمة، سبتمبر 2026.
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- نافذة العرض المكبرة (Lightbox) -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="مستعرض اللقطات البصرية">
+    <div class="lightbox-content">
+      <button id="lightbox-close" class="lightbox-close" type="button" aria-label="إغلاق النافذة">×</button>
+      <button id="lightbox-prev" class="lightbox-nav lightbox-prev" type="button" aria-label="الصورة السابقة">›</button>
+      <button id="lightbox-next" class="lightbox-nav lightbox-next" type="button" aria-label="الصورة التالية">‹</button>
+      <div class="lightbox-image-wrap">
+        <img id="lightbox-img" src="images/slide-01.jpg" alt="صورة مكبرة">
+      </div>
+      <div class="lightbox-caption">
+        <h3 id="lightbox-title" class="lightbox-title">عنوان الصورة</h3>
+        <p id="lightbox-desc" class="lightbox-desc">وصف الصورة</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة المشاركة الحية -->
+  <div id="share-modal" class="share-modal" role="dialog" aria-modal="true" aria-label="مشاركة العمل">
+    <div class="share-card">
+      <button id="share-close" class="share-close-btn" type="button" aria-label="إغلاق نافذة المشاركة">×</button>
+      <h3 class="share-card-title">مشاركة التأمل</h3>
+      <p class="share-card-desc">شارك النص والتأمل عبر المنصات أو انسخ الرابط المباشر.</p>
+      <div class="share-buttons-grid">
+        <a id="share-whatsapp" href="https://api.whatsapp.com/send?text=%D8%A7%D9%84%D8%AE%D8%A8%D8%B2%20%D9%88%D8%A7%D9%84%D9%85%D9%84%D8%AD%20https%3A%2F%2Fkakramah.github.io%2Fbread-and-salt%2F" target="_blank" rel="noopener noreferrer" class="share-btn-item" aria-label="مشاركة عبر واتساب">
+          <span>واتساب</span>
+        </a>
+        <a id="share-telegram" href="https://t.me/share/url?url=https%3A%2F%2Fkakramah.github.io%2Fbread-and-salt%2F&text=%D8%A7%D9%84%D8%AE%D8%A8%D8%B2%20%D9%88%D8%A7%D9%84%D9%85%D9%84%D8%AD" target="_blank" rel="noopener noreferrer" class="share-btn-item" aria-label="مشاركة عبر تلغرام">
+          <span>تلغرام</span>
+        </a>
+        <a id="share-x" href="https://twitter.com/intent/tweet?text=%D8%A7%D9%84%D8%AE%D8%A8%D8%B2%20%D9%88%D8%A7%D9%84%D9%85%D9%84%D8%AD&url=https%3A%2F%2Fkakramah.github.io%2Fbread-and-salt%2F" target="_blank" rel="noopener noreferrer" class="share-btn-item" aria-label="مشاركة عبر إكس">
+          <span>إكس</span>
+        </a>
+        <a id="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkakramah.github.io%2Fbread-and-salt%2F" target="_blank" rel="noopener noreferrer" class="share-btn-item" aria-label="مشاركة عبر فيسبوك">
+          <span>فيسبوك</span>
+        </a>
+      </div>
+      <div class="share-copy-box">
+        <input type="text" id="share-link-input" class="share-copy-input" value="https://kakramah.github.io/bread-and-salt/" readonly>
+        <button type="button" id="share-copy-btn" class="share-copy-btn">نسخ الرابط</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- الذيل السيادي الكامل (§3.5 و§5.13) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-signature" dir="ltr" style="unicode-bidi:isolate;">@𝓚𝓱𝓪𝓵𝓭𝓸𝓾𝓷𝓐𝓴𝓻𝓪𝓶𝓪𝓱</div>
+      <div class="footer-eagle-wrap">
+        <img src="images/eagle-emblem-metal.svg" alt="العقاب السوري" class="footer-eagle" width="48" height="36">
+      </div>
+      <div class="social-chips">
+        <a href="https://wa.me/966566702030" target="_blank" rel="noopener noreferrer" class="social-chip" aria-label="واتساب خلدون عكرمة">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"></path>
+          </svg>
+          <span>واتساب: 966566702030+</span>
+        </a>
+        <a href="https://instagram.com/khaldounakramah" target="_blank" rel="noopener noreferrer" class="social-chip" aria-label="إنستغرام خلدون عكرمة">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+          </svg>
+          <span>إنستغرام: khaldounakramah@</span>
+        </a>
+        <a href="mailto:akramahkhaldoun@gmail.com" class="social-chip" aria-label="البريد الإلكتروني لخلدون عكرمة">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span>akramahkhaldoun@gmail.com</span>
+        </a>
+      </div>
+      <div class="footer-rights" dir="ltr" style="unicode-bidi:isolate;">جميع الحقوق محفوظة © 2026 · 𝓚𝓱𝓪𝓵𝓭𝓸𝓾𝓷𝓐𝓴𝓻𝓪𝓶𝓪𝓱</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

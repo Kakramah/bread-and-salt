@@ -1,0 +1,1073 @@
+/* ==========================================================================
+   الخبز والملح · Bread and Salt
+   أسلوب 06: رثاء دافئ بلا ذهب (06-warm-elegy)
+   دستور مشاريع الويب الإصدار 5.1
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1 · الخطوط المحلية (@font-face)
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Amiri';
+  src: url('fonts/Amiri-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('fonts/Amiri-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('fonts/Cairo-Variable.woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('fonts/Tajawal-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('fonts/Tajawal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('fonts/Tajawal-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   2 · مصفوفة التوكنات المعتمدة (:root)
+   -------------------------------------------------------------------------- */
+:root {
+  /* الخلفيات والأسطح */
+  --color-bg: #0f0e0d;
+  --color-bg-alt: #161412;
+  --color-surface: #1a1816;
+  --color-surface-hover: #26221e;
+  --color-surface-card: rgba(26, 24, 22, 0.78);
+  --color-surface-trans: rgba(15, 14, 13, 0.88);
+  --color-surface-overlay: rgba(15, 14, 13, 0.94);
+
+  /* الألوان البطلة واللكنات */
+  --color-hero: #c39a6b;
+  --color-hero-dim: #96744c;
+  --color-hero-glow: rgba(195, 154, 107, 0.16);
+  --color-salt-white: #e8e4de;
+
+  /* النصوص والطباعة */
+  --color-text-primary: #eae5dc;
+  --color-text-secondary: #a8a299;
+  --color-text-dim: #706b64;
+
+  /* الحدود والفواصل */
+  --color-border: rgba(195, 154, 107, 0.16);
+  --color-border-subtle: rgba(234, 229, 220, 0.08);
+  --color-border-card: rgba(195, 154, 107, 0.24);
+
+  /* العائلات الخطية */
+  --font-display: 'Amiri', 'Noto Naskh Arabic', serif;
+  --font-body: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* الأبعاد والمقاييس */
+  --container-max: 1140px;
+  --container-prose: 68ch;
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 2rem;
+
+  /* الحركة والانتقالات */
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.25s;
+  --dur-base: 0.45s;
+  --dur-slow: 0.85s;
+}
+
+/* --------------------------------------------------------------------------
+   3 · الإعدادات العامة وضبط الأساسيات
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.85;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-hero);
+  text-decoration: none;
+  transition: color var(--dur-fast) ease;
+}
+
+a:hover {
+  color: var(--color-text-primary);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-hero);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   4 · شريط التقدم والتنقل العلوي
+   -------------------------------------------------------------------------- */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background-color: var(--color-border-subtle);
+  z-index: 1000;
+}
+
+.reading-progress-bar {
+  height: 100%;
+  width: 0;
+  background-color: var(--color-hero);
+  transition: width 0.1s linear;
+}
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 64px;
+  background-color: var(--color-surface-trans);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border-subtle);
+  z-index: 990;
+  display: flex;
+  align-items: center;
+}
+
+.site-nav .nav-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.nav-eagle {
+  width: 44px;
+  height: 33px;
+  opacity: 0.35;
+  transition: opacity var(--dur-base) ease;
+}
+
+.nav-brand:hover .nav-eagle {
+  opacity: 0.75;
+}
+
+.nav-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.95rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  transition: all var(--dur-fast) ease;
+}
+
+.nav-btn:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+  background-color: var(--color-surface-hover);
+}
+
+.nav-btn.active {
+  color: var(--color-hero);
+  border-color: var(--color-hero);
+}
+
+/* --------------------------------------------------------------------------
+   5 · الافتتاحية (Hero Section)
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 1.5rem 4rem;
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.42;
+  filter: saturate(0.85) brightness(0.68);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(15, 14, 13, 0.3) 0%, rgba(15, 14, 13, 0.88) 75%, var(--color-bg) 100%);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: var(--container-prose);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-hero);
+  background-color: var(--color-surface-card);
+  padding: 0.3rem 1.1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6.5vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text-primary);
+  margin-bottom: 1.75rem;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+.hero-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--color-hero);
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.hero-subtext {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-dim);
+  font-size: 0.85rem;
+  min-height: 44px;
+  min-width: 44px;
+  transition: color var(--dur-fast) ease, transform var(--dur-fast) ease;
+}
+
+.scroll-cue:hover {
+  color: var(--color-hero);
+  transform: translateY(3px);
+}
+
+.scroll-cue-arrow {
+  width: 20px;
+  height: 20px;
+  animation: pulseVertical 2.2s infinite ease-in-out;
+}
+
+@keyframes pulseVertical {
+  0%, 100% { transform: translateY(0); opacity: 0.45; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   6 · لحظة التوقيع التفاعلية: شريط تحول المائدة (Interactive Table)
+   -------------------------------------------------------------------------- */
+.signature-tracker-wrap {
+  position: sticky;
+  top: 64px;
+  z-index: 950;
+  background-color: var(--color-surface-trans);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding: 0.75rem 1.5rem;
+}
+
+.signature-tracker {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.tracker-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--color-text-dim);
+  white-space: nowrap;
+}
+
+.tracker-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-hero);
+  box-shadow: 0 0 10px var(--color-hero-glow);
+}
+
+.tracker-state-text {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-hero);
+  transition: color var(--dur-fast) ease;
+}
+
+.tracker-steps {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.step-node {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-dim);
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  transition: all var(--dur-fast) ease;
+}
+
+.step-node:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+.step-node.active {
+  background-color: var(--color-hero);
+  color: var(--color-bg);
+  border-color: var(--color-hero);
+}
+
+/* --------------------------------------------------------------------------
+   7 · المتن السردي الغامر (7 مشاهد)
+   -------------------------------------------------------------------------- */
+.story-flow {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.scene-block {
+  margin-bottom: 6rem;
+  scroll-margin-top: 130px;
+}
+
+.scene-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2.75rem;
+  transition: border-color var(--dur-base) ease, transform var(--dur-base) ease;
+}
+
+.scene-card:hover {
+  border-color: var(--color-border);
+}
+
+.scene-block.reverse .scene-card {
+  direction: ltr;
+}
+
+.scene-block.reverse .scene-card > * {
+  direction: rtl;
+}
+
+.scene-media {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.scene-media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-reveal), filter var(--dur-base) ease;
+}
+
+.scene-media:hover img {
+  transform: scale(1.035);
+  filter: brightness(1.05);
+}
+
+.media-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background-color: var(--color-surface-trans);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-subtle);
+  pointer-events: none;
+}
+
+.scene-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scene-anchor {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-hero);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.scene-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.scene-text {
+  font-size: 1.08rem;
+  line-height: 1.95;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.scene-material-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-surface);
+  border-right: 3px solid var(--color-hero);
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+}
+
+.material-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-hero);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8 · الاقتباسات المعلقة (Pull Quotes)
+   -------------------------------------------------------------------------- */
+.pull-quote-section {
+  max-width: var(--container-prose);
+  margin: 5rem auto;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  position: relative;
+}
+
+.pull-quote-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--color-hero);
+  margin-bottom: 1rem;
+}
+
+.pull-quote-author {
+  font-size: 0.95rem;
+  color: var(--color-text-dim);
+}
+
+/* --------------------------------------------------------------------------
+   9 · قسم المصادر والبيان (المصادر الظاهرة §4.9.7)
+   -------------------------------------------------------------------------- */
+.sources-section {
+  max-width: var(--container-prose);
+  margin: 5rem auto 3rem;
+  padding: 2.5rem;
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.sources-heading {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sources-heading::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-hero);
+}
+
+.sources-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.source-item {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.source-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.source-title {
+  color: var(--color-hero);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   10 · نافذة العرض المكبرة (Lightbox)
+   -------------------------------------------------------------------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-surface-overlay);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lightbox-image-wrap {
+  width: 100%;
+  max-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-image-wrap img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-caption {
+  text-align: center;
+  max-width: var(--container-prose);
+}
+
+.lightbox-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--color-hero);
+  margin-bottom: 0.35rem;
+}
+
+.lightbox-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -45px;
+  left: 0;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--dur-fast) ease;
+}
+
+.lightbox-close:hover {
+  color: var(--color-text-primary);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  transition: all var(--dur-fast) ease;
+}
+
+.lightbox-nav:hover {
+  background-color: var(--color-hero);
+  color: var(--color-bg);
+}
+
+/* في العربية: السابق يميناً، والتالي يساراً (8.3ب.4) */
+.lightbox-prev {
+  right: -60px;
+}
+
+.lightbox-next {
+  left: -60px;
+}
+
+/* --------------------------------------------------------------------------
+   11 · نموذج المشاركة الحية (§8.6)
+   -------------------------------------------------------------------------- */
+.share-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 14, 13, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) ease;
+}
+
+.share-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.share-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.share-card-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.share-card-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.75rem;
+}
+
+.share-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.share-btn-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.5rem;
+  background-color: var(--color-surface-hover);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: 0.82rem;
+  min-height: 44px;
+  min-width: 44px;
+  transition: all var(--dur-fast) ease;
+}
+
+.share-btn-item:hover {
+  border-color: var(--color-hero);
+  color: var(--color-hero);
+  transform: translateY(-2px);
+}
+
+.share-copy-box {
+  display: flex;
+  gap: 0.5rem;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.5rem 0.35rem 1rem;
+  align-items: center;
+}
+
+.share-copy-input {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  width: 100%;
+  outline: none;
+}
+
+.share-copy-btn {
+  background-color: var(--color-hero);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--dur-fast) ease;
+}
+
+.share-copy-btn:hover {
+  background-color: var(--color-salt-white);
+}
+
+.share-close-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  color: var(--color-text-dim);
+  font-size: 1.5rem;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-close-btn:hover {
+  color: var(--color-text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   12 · الذيل السيادي الكامل (§3.5 و§5.13)
+   عمود واحد بالمنتصف: التوقيع، ثم العقاب، ثم شرائح الحسابات الثلاث
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border-subtle);
+  padding: 5rem 1.5rem 4rem;
+  margin-top: 6rem;
+}
+
+.footer-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.footer-signature {
+  font-family: var(--font-body);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-hero);
+  letter-spacing: 0.04em;
+  display: inline-block;
+}
+
+.footer-eagle-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.footer-eagle {
+  width: 48px;
+  height: 36px;
+  opacity: 0.35;
+  transition: opacity var(--dur-base) ease;
+}
+
+.footer-eagle:hover {
+  opacity: 0.8;
+}
+
+.social-chips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.social-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 1.25rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-secondary);
+  font-size: 0.88rem;
+  min-height: 44px;
+  min-width: 44px;
+  transition: all var(--dur-fast) ease;
+}
+
+.social-chip:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+  background-color: var(--color-surface-hover);
+  transform: translateY(-2px);
+}
+
+.chip-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-hero);
+  flex-shrink: 0;
+}
+
+.footer-rights {
+  font-size: 0.88rem;
+  color: var(--color-text-dim);
+  margin-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   13 · التجاوب والشاشات الصغيرة (§5.8)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .scene-card {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.75rem;
+  }
+
+  .scene-block.reverse .scene-card {
+    direction: rtl;
+  }
+
+  .signature-tracker {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .tracker-steps {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .social-chips {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .social-chip {
+    justify-content: center;
+  }
+
+  .lightbox-nav {
+    display: none;
+  }
+
+  .lightbox {
+    padding: 1rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14 · دعم الحركة المخففة (§5.7.1)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scroll-cue-arrow {
+    animation: none;
+  }
+}
