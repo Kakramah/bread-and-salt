@@ -193,7 +193,7 @@
 
   const shareTitle = 'الخبز والملح · تأمل في الوفاء والخيبة';
   const shareUrl = 'https://kakramah.github.io/bread-and-salt/';
-  const shareText = '«ليس كلُّ من أكل معك الخبزَ والملحَ صديقَك؛ ربما كان جائعاً فقط.»';
+  const shareText = 'ليس كلُّ من أكل معك الخبزَ والملحَ صديقَك؛ ربما كان جائعاً فقط.';
 
   function handleShare() {
     if (navigator.share) {

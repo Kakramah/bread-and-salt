@@ -643,6 +643,24 @@ button:focus-visible {
   font-weight: 600;
 }
 
+/* اسم الكتاب يُعرف بلونه، والاقتباس بسطره المستقل (4.12.4) */
+.source-book {
+  font-style: normal;
+  color: var(--color-text-primary);
+}
+
+.source-quote {
+  display: block;
+  margin: 0.6rem 0;
+  padding: 0.7rem 1.1rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--color-text-primary);
+  background-color: var(--color-hero-glow);
+  border-radius: var(--radius-md);
+}
+
 /* --------------------------------------------------------------------------
    10 · نافذة العرض المكبرة (Lightbox)
    -------------------------------------------------------------------------- */
@@ -908,7 +926,7 @@ button:focus-visible {
 
 /* --------------------------------------------------------------------------
    12 · الذيل السيادي الكامل (§3.5 و§5.13)
-   عمود واحد بالمنتصف: التوقيع، ثم العقاب، ثم شرائح الحسابات الثلاث
+   عمود واحد بالمنتصف: التوقيع، ثم العقاب، ثم أيقونات الحسابات الثلاث في صف واحد
    -------------------------------------------------------------------------- */
 .site-footer {
   background-color: var(--color-bg-alt);
@@ -956,39 +974,39 @@ button:focus-visible {
 
 .social-chips {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 0.85rem;
-  flex-wrap: wrap;
-  width: 100%;
+  gap: 1rem;
 }
 
+/* الحساب أيقونة وحدها في دائرة 44px، والقيمة في الرابط لا في النص (5.13.3) */
 .social-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  padding: 0.55rem 1.25rem;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-pill);
-  color: var(--color-text-secondary);
-  font-size: 0.88rem;
-  min-height: 44px;
-  min-width: 44px;
-  transition: all var(--dur-fast) ease;
+  color: var(--color-hero);
+  transition: color var(--dur-fast) ease, background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease, transform var(--dur-fast) ease;
 }
 
 .social-chip:hover {
-  color: var(--color-text-primary);
-  border-color: var(--color-border);
+  color: var(--color-salt-white);
+  border-color: var(--color-border-card);
   background-color: var(--color-surface-hover);
   transform: translateY(-2px);
 }
 
 .chip-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--color-hero);
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
@@ -1021,15 +1039,6 @@ button:focus-visible {
   .tracker-steps {
     width: 100%;
     justify-content: space-between;
-  }
-
-  .social-chips {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .social-chip {
-    justify-content: center;
   }
 
   .lightbox-nav {
