@@ -14,7 +14,7 @@
 | **الطبيعة** | قصة · تأمل في الوفاء والخيبة | تأمل أخلاقي وإنساني في حدود المؤاكلة وبواعث الجوع |
 | **الشعور المهيمن** | مرارة هادئة لا غضب | الصدمة استقرت والعتب هدأ وبقي الفهم المجرد للجوع حين يلبس ثوب الصداقة |
 | **الأسلوب** | 06 (رثاء دافئ بلا ذهب — `06-warm-elegy`) | رثاء صامت دافئ يبتعد عن بهرجة الذهب ليلامس خشونة الخبز وتراب المائدة |
-| **العائلة الخطية** | Amiri (عناوين ومفتتح) · Cairo (متن السرد) | Amiri لجلال النسخ الأدبي ووقاره، وCairo لوضوح المتن ومقروئيته العالية |
+| **العائلة الخطية** | Cairo (عناوين ومفتتح) · Tajawal (متن السرد) | موروثة من الأسلوب 06 كما في موقعه المرجعي «حماة لا تُنسى» (3.4.2) |
 | **معالجة العقاب** | `dark` · عرض 48px · شفافية 0.30 | النص شخصي تأملي إنساني؛ الحضور السيادي هادئ ورصين ومحترم |
 
 ---
@@ -47,8 +47,8 @@
   --color-border-subtle: rgba(234, 229, 220, 0.08);
 
   /* الخطوط المحلية */
-  --font-display: 'Amiri', 'Noto Naskh Arabic', serif;
-  --font-body: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Cairo', 'Tajawal', 'Geeza Pro', 'Noto Naskh Arabic', sans-serif;
+  --font-body: 'Tajawal', 'Geeza Pro', 'Noto Naskh Arabic', sans-serif;
 
   /* المقاييس والمحاذاة */
   --container-max: 1140px;
@@ -96,10 +96,8 @@
 |---|---|---|
 | `images/eagle-emblem-metal.svg` | العقاب السوري المعدني المعتمد (النسبة 1000 : 754.1) | أصل الهوية السيادية المعتمد |
 | `images/eagle-emblem.svg` | العقاب السوري المسطح المعتمد | أصل الهوية السيادية المعتمد |
-| `fonts/Amiri-Regular.woff2` | خط النسخ الأدبي العربي للعناوين | SIL Open Font License |
-| `fonts/Amiri-Bold.woff2` | خط النسخ الأدبي العربي العريض | SIL Open Font License |
-| `fonts/Cairo-Variable.woff2` | خط المتن الهندسي المقروء | SIL Open Font License |
-| `fonts/Tajawal-*.woff2` | خط الاحتياط المتوافق للمتن | SIL Open Font License |
+| `fonts/Cairo-Variable.woff2` | خط العناوين والمفتتح | SIL Open Font License |
+| `fonts/Tajawal-*.woff2` | خط المتن | SIL Open Font License |
 | `images/slide-01.jpg` | تصوّر بصري · رغيف قمح ساخن وفتات وبخار خافت على خشب عتيق | تصوّر بصري خاضع لمعايير الأسلوب 06 (<400KB) |
 | `images/slide-02.jpg` | تصوّر بصري · بلورات ملح خشن في شقوق الخشب وكف مستقرة | تصوّر بصري خاضع لمعايير الأسلوب 06 (<360KB) |
 | `images/slide-03.jpg` | تصوّر بصري · أصابع تلهف لغمس الخبز في صحن زيت فخاري | تصوّر بصري خاضع لمعايير الأسلوب 06 (<280KB) |

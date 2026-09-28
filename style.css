@@ -8,22 +8,6 @@
    1 · الخطوط المحلية (@font-face)
    -------------------------------------------------------------------------- */
 @font-face {
-  font-family: 'Amiri';
-  src: url('fonts/Amiri-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Amiri';
-  src: url('fonts/Amiri-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Cairo';
   src: url('fonts/Cairo-Variable.woff2') format('woff2-variations');
   font-weight: 200 900;
@@ -85,8 +69,8 @@
   --color-border-card: rgba(195, 154, 107, 0.24);
 
   /* العائلات الخطية */
-  --font-display: 'Amiri', 'Noto Naskh Arabic', serif;
-  --font-body: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Cairo', 'Tajawal', 'Geeza Pro', 'Noto Naskh Arabic', sans-serif;
+  --font-body: 'Tajawal', 'Geeza Pro', 'Noto Naskh Arabic', sans-serif;
 
   /* الأبعاد والمقاييس */
   --container-max: 1140px;

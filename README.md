@@ -11,7 +11,6 @@
 - **الأسلوب:** 06 (رثاء دافئ بلا ذهب — `06-warm-elegy`)
 
 ## التراخيص والخطوط
-- خط **Amiri**: ترخيص SIL Open Font License (OFL).
 - خط **Cairo**: ترخيص SIL Open Font License (OFL).
 - خط **Tajawal**: ترخيص SIL Open Font License (OFL).
 - شعار العقاب السوري: الهوية الرسمية لحكومة الثورة السورية (`images/eagle-emblem-metal.svg`).
